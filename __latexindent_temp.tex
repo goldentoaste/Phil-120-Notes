@@ -392,8 +392,6 @@ For logic operators and tableaux references, see Section 1.
 
 \noindent
 {\large
-
-
     \textbf{Turntile}: `$\vdash$' denotes \emph{syntatic} implication. 
     $A \vdash_1 B$ means with only information from $A$, it is possible to prove $B$.
     Or alternatively, it is possible to obtain $B$ from `rearranging' symbols of $A$.\\ 
@@ -403,6 +401,26 @@ For logic operators and tableaux references, see Section 1.
 
     \textbf{Notes}: A logic system is \emph{sound} if $A\vdash B \implies B$, is 
     \emph{complete} if $A \models B \implies A \vdash B$. Classical logics is sound and 
-    complete so there isn't a big difference between the 2
+    complete so there isn't a big difference between the two symbols used.
+}
+
+\subsection{Cases}
+
+\noindent
+{
+    \large
+
+    \textbf{True/False in case}: For a particular case $c$, $c \models_1 A$ means
+    `$A$ is true in case $c$', while $c \models_0 A$ means
+    `$A$ is false in case $c$'.\\
+
+
+    \textbf{Complete/Consistant Cases}: 
+    \begin{itemize}
+        \item A case is \emph{complete} if at least 1 of $c\models_1 A, c\models_0 A$ holds.
+        \item A case is \emph{consistant} if at most 1 of $c\models_1 A, c\models_0 A$ holds(so not both).
+        \item All cases in classical logic is both complete and consistant.
+    \end{itemize}
+    *Skipping things overe*
 }
 \end{document}
