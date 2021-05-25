@@ -3,12 +3,12 @@
 \usepackage{amssymb}
 \usepackage{geometry}
 \usepackage[linguistics]{forest}
-\usepackage{imakeidx}
+
 \usepackage{float}
 \usepackage{makecell}
-\newcommand{\true}{{\bf t}}
-\newcommand{\false}{{\bf f}}
-\geometry{legalpaper, portrait, margin=1.2in}
+\newcommand{\true}{{\mathfrak{t}}}
+\newcommand{\false}{{\mathfrak{f}}}
+\geometry{legalpaper, portrait, margin=1in}
 \title{Phil 120, Review Notes}
 \author{Stuff}
 \date{May 23, 2021}
@@ -31,7 +31,6 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
     \centering
     \large
     \begin{tabular}{c l}
-        &\\
         \begin{tabular}{c|c|c}
             $\wedge$ & T & F\\
             \hline
@@ -85,7 +84,7 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         \hline
         &\\
         $\lnot (A \wedge \lnot A)$ & \makecell[l]{
-            Non-contradiction.\\ It is true that not both A and not A hold at the same time. 
+            Non-contradiction.\\ It is true that not both A and not A hold at the \\same time. 
         }\\
         &\\
         \hline
@@ -102,7 +101,7 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         &\\
         $A \vee B, \lnot A \implies B$ & \makecell[l]{
             Disjunctive syllogism.\\
-            If at least one of A or B is true, then if one of them is false, \\the other must be true.
+            If at least one of A or B is true, then if one of them is \\false, the other must be true.
         }\\
         &\\
         \hline
@@ -118,17 +117,91 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         &\\
         \hline
         &\\
-        \makecell[l]{
+        \makecell{
             $\lnot (A \vee B) \iff \lnot A \wedge \lnot B$\\
             $\lnot (A \wedge B) \iff \lnot A \vee \lnot B$
         } & De Morgan's Law.\\
         &\\
         \hline
         &\\
-        $A \vee ()$
+        \makecell{
+            $A \vee (B \wedge C) \iff (A\vee B) \wedge (A \vee C)$\\
+            $A \wedge (B \vee C) \iff (A \wedge B)\vee (A \wedge C)$
+        } & Distributability
 
     \end{tabular}
 \end{table} 
 
+\subsection{Tableaux Identities}
+\begin{table}[H]
+    \centering
+    \Large
+    \begin{tabular}{c c | c c}
+        $\true \wedge$: & 
+        \begin{forest}
+        [$\true A \wedge B$ 
+            [$\true A$ \\ $\true B$]
+        ]
+        \end{forest}
+        & $\false \wedge$: & 
+        \begin{forest}
+        [$\false A \wedge B$ 
+            [$\false A$]  [$\false B$]
+        ]
+        \end{forest}\\
+        
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+        \hline
+        $\true \vee$: & 
+        \begin{forest}
+            [$\true A \vee B$ 
+                [$\true A$]  [$\true B$]
+            ]
+        \end{forest} 
+        & $\false \vee$: 
+        & \begin{forest}
+            [$\false A \vee B$ 
+                [$\false A$ \\ $\false B$]
+            ]
+            \end{forest}\\
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \hline 
+        $\true \rightarrow$: &
+        \begin{forest}
+            [$\true A \rightarrow B$
+                [$\true \lnot A$]
+                [$\true B $]
+            ]
+        \end{forest}
+        & $\false  \rightarrow $: &
+        \begin{forest}
+            [$\false A \rightarrow B$ 
+                [$\false \lnot A$ \\ $\false B$]
+            ]
+            \end{forest}\\
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        \hline
+        $\true \leftrightarrow$ :
+        & \begin{forest}
+            [ $\true A \leftrightarrow B$
+                [$\true \lnot A$ [$\true \lnot B$]]
+                [$\true \lnot A$ [$\true A$]]
+                [$\true \lnot B$ [$\true  B$]]
+                [$\true  A$ [$\true  B$]]
+            ]
+        \end{forest}
+        & $\false \leftrightarrow$: 
+        & \begin{forest}
+            [$\false A \leftrightarrow B$
+            [$\false \lnot A$ [$\false B$]]
+            [$\false \lnot B$ [$\false A$]]
+            ]
+        \end{forest}
+    \end{tabular}
+\end{table}
+{\large Note: \\
+Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B )$
+
+}
 \end{document}
