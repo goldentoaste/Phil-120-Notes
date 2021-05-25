@@ -208,10 +208,47 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
      \begin{itemize}
          \item If there are atomic branches left open, then those are valid counter examples.
      \end{itemize}
-    \item A branch is closed any of following pairs occurs in a branch: 
-    $\{(\false A, \true A), (\false A, \false \lnot A), (\)\}$
+    \item A branch is closed any of following pairs occurs in a branch:
+    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$
 \end{itemize}
+Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$, use a $\\
 
+\begin{forest}
+[
+    $\true (E \rightarrow D)$
+    [$\false ((D\wedge E) \leftrightarrow E)$
+        [$\true \lnot E$
+            [$\false \lnot (D \wedge E)$ 
+                [$\false E$
+                    [$\false \lnot D$ 
+                    [$\false \lnot E$\\$\times$]]
+                ]
+            ]
+            [$\false (D \wedge E)$ 
+                [$\false \lnot E$\\$\times $
+                ]
+            ]
+        ]
+        [$\true D$
+        [$\false \lnot (D \wedge E)$ 
+            [$\false E$
+            [$\false \lnot D$ 
+            [$\false \lnot E$\\$\times$]]
+            ]
+        ]
+        [$\false (D \wedge E)$ 
+            [$\false \lnot E$
+            [$\false D$\\$\times$]
+            [$\false E$\\$\times$]
+            ]
+        ]
+        ]
+    ]
+]
+\end{forest}
+
+Since all branches are closed, the negation of the conclusion is never satisfied, 
+thus the relation always holds for all values D and E might take on.
 
 }
 \end{document}
