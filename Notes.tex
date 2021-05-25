@@ -200,8 +200,18 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         \end{forest}
     \end{tabular}
 \end{table}
-{\large Note: \\
-Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B \wedge A)$
+{\large Note: 
+\begin{itemize}
+    \item Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B \wedge A)$.
+    \item To prove a consequence, set the premise to true, conclusion to false. This proves that there is
+     no possible counter example, since the negation is never satisfied. 
+     \begin{itemize}
+         \item If there are atomic branches left open, then those are valid counter examples.
+     \end{itemize}
+    \item A branch is closed any of following pairs occurs in a branch:
+    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$
+\end{itemize}
+
 
 }
 \end{document}
