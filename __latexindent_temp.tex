@@ -3,7 +3,7 @@
 \usepackage{amssymb}
 \usepackage{geometry}
 \usepackage[linguistics]{forest}
-
+\usepackage{microtype}
 \usepackage{float}
 \usepackage{makecell}
 \newcommand{\true}{{\mathfrak{t}}}
@@ -23,7 +23,7 @@
 
 \section{References}
 
-\subsection{BasicLogic Operators}
+\subsection{Basic Logic Operators}
 The followings are for A * B, where '*' is an operator, A is top row, B is left column.
 
 
@@ -209,46 +209,200 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
          \item If there are atomic branches left open, then those are valid counter examples.
      \end{itemize}
     \item A branch is closed any of following pairs occurs in a branch:
-    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$
+    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$, use a '$\times$' to 
+    indicate a closed branch.
 \end{itemize}
-Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$, use a $\\
+Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$\\
 
-\begin{forest}
-[
-    $\true (E \rightarrow D)$
-    [$\false ((D\wedge E) \leftrightarrow E)$
-        [$\true \lnot E$
-            [$\false \lnot (D \wedge E)$ 
-                [$\false E$
+
+\begin{center}
+    \begin{forest}
+        [
+            $\true (E \rightarrow D)$
+            [$\false ((D\wedge E) \leftrightarrow E)$
+                [$\true \lnot E$
+                    [$\false \lnot (D \wedge E)$ 
+                        [$\false E$
+                            [$\false \lnot D$ 
+                            [$\false \lnot E$\\$\times$]]
+                        ]
+                    ]
+                    [$\false (D \wedge E)$ 
+                        [$\false \lnot E$\\$\times $
+                        ]
+                    ]
+                ]
+                [$\true D$
+                [$\false \lnot (D \wedge E)$ 
+                    [$\false E$
                     [$\false \lnot D$ 
                     [$\false \lnot E$\\$\times$]]
+                    ]
+                ]
+                [$\false (D \wedge E)$ 
+                    [$\false \lnot E$
+                    [$\false D$\\$\times$]
+                    [$\false E$\\$\times$]
+                    ]
+                ]
                 ]
             ]
-            [$\false (D \wedge E)$ 
-                [$\false \lnot E$\\$\times $
-                ]
-            ]
         ]
-        [$\true D$
-        [$\false \lnot (D \wedge E)$ 
-            [$\false E$
-            [$\false \lnot D$ 
-            [$\false \lnot E$\\$\times$]]
-            ]
-        ]
-        [$\false (D \wedge E)$ 
-            [$\false \lnot E$
-            [$\false D$\\$\times$]
-            [$\false E$\\$\times$]
-            ]
-        ]
-        ]
-    ]
-]
-\end{forest}
+        \end{forest}
+\end{center}
+
 
 Since all branches are closed, the negation of the conclusion is never satisfied, 
 thus the relation always holds for all values D and E might take on.
+}
 
+
+\section{Notable Definitions from Part 1}
+\subsection{Consequences}
+
+\noindent{
+    \large
+    
+    \textbf{Logical Consequence}: $A_1 \dots A_n$ implies B, and B is a consequence of $A_1 \dots A_n$,
+    means when $A_1 \dots A_n$ are all true, then B must be true also. \\
+    
+    \textbf{Case}: A case be loosely interpreted a particular combination of values for variables.\\
+
+    \textbf{Valid Argument}: An argument consist of a set of premises and a single conclusion,
+    this argument is \emph{valid} if the conclusion is a \emph{logical consequence} of the premises.\\
+
+    \textbf{Counter Example}: A counter example to an argument is a case where all premises are truth,
+    but the conclusion is false.\\
+
+    \textbf{Sound Argument}: An argument is sound if the premises are true in \emph{all} cases, 
+    and the arugment is valid. An argument cannot be sound if its not already valid.\\
+}
+
+\subsection{Language}
+
+\noindent{
+    \large
+
+    \textbf{Syntax}: Syntax consist of a basic set of symbols, and a rule set to create more 
+    complex words \& sentences from symbols. Syntax is not concerned with \emph{meaning} of any symbols or sentences\\
+
+    \textbf{Semantics}: Semantics of a language assigns meaning to a sentence in the language.\\
+
+
+    \textbf{Atom, Connectives, Molecules}: An atomic sentence is the mostly basic sentence that cannot be reduced
+    further, like 'sky is blue' or 'Bob is eating', atomic sentence do not have connectives. A molecular sentences is made with a number of atomic 
+    sentences linked with connectives, like 'Bob is sleeping \emph{or} eating', 'Sun is bright \emph{and} hot'.
+}
+
+\subsection{Basics of Set Theory}
+
+\noindent{
+    \large
+
+    \textbf{Set}: A set is an arbitrary, unordered \emph{collection} of unique \emph{things}, depending on context,
+    duplicates are usually ignored. 2 sets are equal if they contain indentical items. For example:
+    $$Food := \{apple, cookie, burger\} = \{ apple, apple, apple, burger, cookie\}  $$
+    
+    \textbf{Membership}($\in, \notin$): For any set it is possible to tell if an item belongs in the set. For exmaple:
+    $$
+    cookie \in Food, dirt \notin Food$$
+    Which means that 'cookie' is in the set of Food(cookie is a member of Food), but dirt is not.\\
+
+
+    \textbf{Set builder notation}: A notation used to contruct sets from definitions. For exmaple:
+    $$
+    L = \{n \in \mathbb{N} : n > 44\}
+    $$
+    Here the ':' means 'such that', so the set L is the set all natural numbers, n, such that n is larger than 44.\\
+
+    \textbf{Union}($\cup$): The union of 2 sets is a set containing items from either sets:
+    $$\{1, 3, 7\} \cup \{2, 3, 2\} = \{1, 2, 7, 3\}
+    $$
+
+    \textbf{Intersec}($\cap$): The intersection of 2 sets is a contain items that belongs to both sets:
+    $$\{1, 3, 7\} \cup \{1, 2, 3, 4\} = \{1, 3\}
+    $$
+
+    \textbf{Subsets}($\subseteq $): $A \subseteq B$ if A is contained in B, that is,
+    every item in A is also in B.\\Note: $A = B \iff (A \subseteq B)\wedge(B \subseteq A)$.\\
+
+    \textbf{Proper Subset}($\subset$): A is a proper subset of B if A $\subseteq$ B, and B 
+    is strictly bigger, that is, contains at least one item A does not.
+}
+\newpage
+\subsection{Pairs and Relations}
+
+\noindent
+{
+    \large
+
+    \textbf{Ordered Pair}: Unlike sets, ordered pairs/n-tuple are ordered. So $\{a,b\} = \{b,a\}$, 
+    however, $\langle a, b \rangle \not = \langle b, a \rangle$. N-tuples contains n ordered items.\\
+
+    \textbf{Cartesian Product}: $A \times B$ is the cartesian product of A and B, which is a set containing 
+    all possible ordered pairs $\langle a, b \rangle, a\in A, b \in B$. $\times$ can be applied more than 2 times. For exmaple:
+    $$
+    \{a, b, c\} \times \{1, 2\} = \{
+        \langle a, 1 \rangle,
+        \langle a, 2 \rangle,
+        \langle b, 1 \rangle,
+        \langle b, 2 \rangle,
+        \langle c, 1 \rangle,
+        \langle c, 2 \rangle\}
+    $$
+    $$
+    D \times E \times F = \\
+    \{
+        \langle d_1, e, f_1 \rangle,
+        \langle d_1, e, f_2 \rangle,
+        \langle d_1, e, f_3 \rangle,
+        \langle d_2, e, f_1 \rangle,
+        \langle d_2, e, f_2 \rangle,
+        \langle d_2, e, f_3 \rangle
+    \}
+    $$
+    $$
+    \text{Where }D = \{d_1, d_2\}, E = \{e\}, F = \{f_1, f_2, f_3\}
+    $$\\
+
+    \textbf{Relations}: A relation $\mathcal{R}$ on sets A and B, is a way
+    to relate elements of A and B. For $a \in A, b\in B$, $a$ and $b$ 
+    are in relation $\mathcal{R} \iff \langle a, b \rangle \in \mathcal{R}$, and 
+    we can write $a\mathcal{R}b$.\\     Note: $\mathcal{R} \subseteq A \times B$.\\
+
+    \textbf{Reflexivity}: A relation $\mathcal{R}$ is reflexive when $x\mathcal{R}x$ for all $x$.\\
+
+    \textbf{Symmetry}: $\mathcal{R}$ is symmetric when $x\mathcal{R}y \iff y\mathcal{R}x$\\
+
+    \textbf{Transitivity}: $\mathcal{R}$ is transitive when $x\mathcal{R}y, y\mathcal{R}z \implies x\mathcal{R}z$.\\
+
+    \textbf{Equivalence}: $\mathcal{R}$ is an equivalence relation if $\mathcal{R}$ is 
+    reflexive, symmetric, and transitive.\\
+
+    \textbf{Function}: Like functions in calculus, $f: x \rightarrow y$ sends each $x$ to 1 $y$ only,
+    that is, the value of $f(x)$ is not ambiguous.
+
+    }
+
+\newpage
+\section{Classical Logics}
+For logic operators and tableaux references, see Section 1.
+
+\subsection{Turntile($\vdash $) vs Double turntile($\models$)}
+
+\noindent
+{\large
+
+
+    \textbf{Turntile}: `$\vdash$' denotes \emph{syntatic} implication. 
+    $A \vdash_1 B$ means with only information from $A$, it is possible to prove $B$.
+    Or alternatively, it is possible to obtain $B$ from `rearranging' symbols of $A$.\\ 
+
+    \textbf{Double turntile}: `$\models$', denotes \emph{semantic} implication, or models.
+    $A \models_1 B$ means that $B$ is true whenever $A$ is true. \\
+
+    \textbf{Notes}: A logic system is \emph{sound} if $A\vdash B \implies B$, is 
+    \emph{complete} if $A \models B \implies A \vdash B$. Classical logics is sound and 
+    complete so there isn't a big difference between the 2
 }
 \end{document}
