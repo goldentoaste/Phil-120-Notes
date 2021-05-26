@@ -67,7 +67,7 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
             \hline
             T & T & F\\
             F & F & T
-        \end{tabular} & \makecell[l]{IFF, A if and only B. A is logically equivalent, two way implication.\\
+        \end{tabular} & \makecell[l]{IFF, A if and only B. A is logically equivalent to B, two way implication.\\
         A $\leftrightarrow$ B is true exactly when the truth value of A is the same as B.\\
         Note: $A \leftrightarrow B = (A \rightarrow B) \wedge (B \rightarrow A) = (A \wedge B) \vee (\lnot A \wedge \lnot B)$
         }
@@ -91,13 +91,13 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         &\\
         \hline
         &\\
-        $A \rightarrow B, A \implies B$ & \makecell[l]{Modus ponenes, to prove. \\
+        $A \rightarrow B, A \implies B$ & \makecell[l]{Modus ponens, to prove. \\
         If A implies and B and A is true, then B is true.}\\
         &\\
         \hline
         &\\
         $A \rightarrow B, \lnot B \implies \lnot A$ & \makecell[l]{Modus tollens, to disprove. \\
-        If the conclusion is false, then the premise is false also.}\\
+        If the conclusion is false, then the premise must be false also.}\\
         &\\
         \hline
         &\\
@@ -122,14 +122,14 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         \makecell{
             $\lnot (A \vee B) \iff \lnot A \wedge \lnot B$\\
             $\lnot (A \wedge B) \iff \lnot A \vee \lnot B$
-        } & De Morgan's Law.\\
+        } & De Morgan's Law: $\lnot$ distributes over $\vee, \wedge$\\
         &\\
         \hline
         &\\
         \makecell{
             $A \vee (B \wedge C) \iff (A\vee B) \wedge (A \vee C)$\\
             $A \wedge (B \vee C) \iff (A \wedge B)\vee (A \wedge C)$
-        } & Distributability
+        } & Distributability: $\vee$ distrubutes over $\wedge$, and vice versa.
 
     \end{tabular}
 \end{table} 
@@ -321,7 +321,7 @@ thus the relation always holds for all values D and E might take on.
     $$\{1, 3, 7\} \cup \{2, 3, 2\} = \{1, 2, 7, 3\}
     $$
 
-    \textbf{Intersec}($\cap$): The intersection of 2 sets is a contain items that belongs to both sets:
+    \textbf{Intersect}($\cap$): The intersection of 2 sets is a set containing items that belongs to both sets:
     $$\{1, 3, 7\} \cup \{1, 2, 3, 4\} = \{1, 3\}
     $$
 
