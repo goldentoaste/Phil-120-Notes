@@ -422,4 +422,146 @@ For logic operators and tableaux references, see Section 1.
     \end{itemize}
     *Skipping things covered in Section 1 or informally covered in previous sections*
 }
+
+
+\subsection{Analytic Tableaux}
+For example and references on tableaux method of proof, see section 1.3.\\
+
+\noindent
+{\large
+
+\textbf{Tableaux Method}: The tableaux method provides a systematic way to determine if a statement is:
+\begin{itemize}
+    \item true / a theorem, if all atomic leaves of the tree are not closed.
+    \item false / a contradiction, if all branches are closed.
+    \item contingent, in which case the remaining unclosed branches determines the truth value of the statement.
+\end{itemize}
+In particular, to prove a statement, it is helpful to start with the negation/counter example instead, then try to show 
+the negation is never satisfied. So when proving $A \vdash_1 B$, start with:
+$$
+\true A
+$$
+$$
+\false B
+$$
+
+Then follow the reference and example in section 1.3, if all branches closes, then that means the 
+condition of A been true, while B is false, is never satisfied, thus no counter example exists, therefore
+$A \vdash_1 B$.\\
+
+When there some branches left open, then that branche's nodes together forms a counter example when their truth
+value is same as their sign($\true$ or $\false$). \\
+
+\textbf{Sign of Node}: For notation in this class, each node of a tableaux is \emph{signed}($\true$ or $\false$),
+which are essentially assuming the truth value of that node. \\Note, $\true$ and $\false$ signed 
+nodes splits differently, and children nodes have same sgin as their parent. Also:
+$$
+\true A = \false \lnot A, \false A = \true \lnot A
+$$
+}
+
+Skipping chapter 7, doesn't look important.
+\newpage
+
+
+\section{First Order Logic}
+\subsection{Predicates}
+
+\noindent
+{\large
+
+\textbf{Unary Predicate}: A single variabled \emph{well formed formula}(or a boolean function) that 
+evaluates to either true or false depending on the variable. In this class, a predicate looks like $Pa$ 
+where $a$ is the variable, P is the predicate.\\
+
+\textbf{`Denotes'}: Suppose \emph{Object} has name of \emph{`Name'}, then \emph{`Name'} denotes 
+\emph{Object}, and \emph{Object} is the denotation of \emph{`Name'}\\
+
+\textbf{Extension \& AntiExtension}: The \emph{Extension} is the set of objects(denotations) that makes 
+the predicate true. The anti-extension makes the predicate false. For example, suppose $Px$ is true 
+if $x$ is red:
+$$
++(P) = \{apple, cherry, stop \ sign, \dotsb\}, \ -(P) = \{sky, orange, Phil \ 120 \ midterm, \dotsb\}
+$$
+\textbf{Domain of Discourse}: Domain of Discourse, $D$, for a predicate is a set of objects applicable to the 
+predicate. So if the predicate is `x is the first day of the week', the $D$ might be the set of all days in a week.
+Note: $+(P)\cup-(P) = D$, and $+(P) \cap -(P) = \emptyset$, in order for the predicate to behave classically.\\
+
+\textbf{Denotation Function}($\delta$): The denotation function, $\delta(a)$, gets the denotation from 
+the domain of Discourse which $a$ denotes. For a predicate $P$, $Pa$ is true iff $\delta(a) \in +(P)$\\
+
+\textbf{Interpretation}: A interpretation(\emph{case}) contains a domain of discourse and
+a denotation function($\langle D, \delta \rangle$), which is a more formal definition of 
+a \emph{case}, which previous parts have been mentioning.\\
+
+Interpretations can be used to satisfy statements, or to serve as counter examples, like in A2 Q2:\\
+
+a)
+Find an interpretation which satisfy $\varGamma = \{(\lnot Ha \vee Hb),(\lnot Ha \rightarrow \lnot Hb),
+(\lnot Hc \vee Hd)\}$
+\begin{flalign*}
+    & \text{Define } \mathcal{I} =\langle  {D,\delta}\rangle \\
+    & \text{Where } D = \{o_1, o_2, o_3, o_4\}\\ 
+    & \text{and } \delta(a) = o_1, \delta(b) = o_2, \delta(c) = o_3, \delta(d) = o_4\\
+    & \text{such that } +(H) = \{o_1, o_2, o_3, o_4\}, -(H) = \{\} 
+\end{flalign*}
+Now, $Ha, Hb, Hc, Hd = T \\\implies \mathcal{I} \models_1 (\lnot Ha \vee Hb), \ 
+\mathcal{I} \models_1 (\lnot Ha \rightarrow \lnot Hb),\ 
+\mathcal{I} \models_1 (\lnot Hc \vee Hd)\ \\
+\implies \mathcal{I} \models_1 \varGamma
+$
+\\\\
+b)
+Find a counter exmaple to $\{\lnot Ga, (Ga \rightarrow Pb), (\lnot Pb \rightarrow Ga)\}
+\models_1 (Ga \vee \lnot Pb)$
+\begin{flalign*}
+    & \text{Define } \mathcal{I} =\langle  {D,\delta}\rangle \\
+    & \text{Where } D = \{o_1, o_2\}\\ 
+    & \text{and } \delta(a) = o_1, \delta(b) = o_2\\
+    & \text{such that } +(G) = \{\}, -(G) = \{o_1\}, +(P) = \{o_2\}, -(P) = \{\}
+\end{flalign*}
+So that in this interpreation Ga is false, while Gb is true\\
+$\implies \lnot Ga = T, \  (Ga \rightarrow Pb) = T, \  (\lnot Pb \rightarrow Ga) = T$.\\
+However $(Ga \vee \lnot Pb) = F$, so in this interpretation, the premise is true but the conclusion
+is false, which makes this a counter example.
+
+}
+
+\newpage
+
+\subsection{Quantifiers}
+
+\noindent
+{
+    \large 
+
+\textbf{Motivation}: To decribe statements like ``Every apple is sweet'', ``Some cities rains all the time.'', 
+which contains quantifiers.\\
+
+\textbf{Universal and Existential}($\forall, \exists$): 
+\begin{itemize}
+    \item {`$\forall$' translates into `for all', `every', `any', is used to specify any and all of the items in a set:
+        $$
+        \forall n \in \mathbb{N}, 2n > n. \text{ Meaning for all natural number n, 2n is larger than n.}
+        $$
+    }
+    \item {`$\exists$' translates in to `exists', `at least one', `some', is used to specify at least one of an item in a set:
+    $$
+    \exists z \in \mathbb{Z}: z^2 = z. \text{ There exist an integer $z$, such that $z^2 = z$.}
+    $$
+    }
+    \item Quantifiers are tied to variables within its scope. In $\exists x, Px \wedge (\forall y, \lnot Py \rightarrow Px)$, 
+    $\exists x$ applies to the whole formula, but $\forall y$ only applies to the inner bracket.
+    \item To prove or find counter example: \begin{itemize}
+        \item To prove $\forall x, Px$, it is necessary to show $Px$ holds for any arbitrary $x$.
+        \item To disprove/find counter example for $\forall x, Px$, it is sufficient to find a single $x$ such that $Px$ does not hold.  
+        \item To prove $\exists x, Px$, it is sufficient to show there is at least 1 $x$ such that $Px$ holds.
+        \item To disprove $\exists x, Px$ it is necessary to show $Px$ is not satisfied for all $x$.
+    \end{itemize}
+\end{itemize}
+
+
+}
+
+
 \end{document}
