@@ -568,6 +568,34 @@ which contains quantifiers.\\
         \item To disprove $\exists x, Px$ it is necessary to show $Px$ is not satisfied for all $x$.    
     \end{itemize}
 \end{itemize}
+
+
+
+\textbf{Name vs Variable}: Name is refering to a static named reference of a object, while 
+a variable is an unknown. For example : ``Bob is short, and for any person, $p$, p is friends with Bob. $x$ is even
+shorter than Bob''. Here Bob is \emph{named}, while $p$ is a variable bound by quantifier, and $x$ is a free variable since
+it is not bound by a quantifier.\\
+
+\textbf{Valuation Function}: For a particular interpretation, a valuation function may be added $\rightarrow \langle D, \delta, v \rangle$.
+$\delta(a)$ is used to get the object in $D$ that is used in place of names, while $v(x)$ is used to 
+get object to be used in place of \emph{variable}. $v$ is similar to $\delta$, but for variable.\\
+
+\textbf{Prof's Definitions for Quantifier}: First, for any particular valuation function $v$,
+define $v'$ such that $v' \mathtt{\sim}_x v$, $v'$ returns the same value as $v$, except for $v'(x)$. Now, 
+universal and Existential quantifier may be define like so:
+\begin{itemize}
+    \item {$w \models^v_1 \forall x Gx \iff \text{ for any } v' \mathtt{\sim}_x v, w \models^{v'}_1 Gx$.
+    \\So no matter which object in $D$ is put in place of $x$, the statement holds still.
+    } 
+    \item {$w \models^v_1 \exists y Gy \iff \text{ there is at least 1 } v' \mathtt{\sim}_y v, w \models^{v'}_1 Gy$.
+    \\So at least 1 object exist in $D$, such that when put in place of y, the statement holds.
+    } 
+\end{itemize}
+
+\textbf{Predicate with Multiple Free Variable}: A predicate may have more than 1 variable, for example $Gab$, 
+for the predicate of `$a < b$. Predicate with multiple variable could be written like `$P^n$', where 
+$n$ is the number of variable. For a predicate of $n$ variable, then the extension/anti-extension should contain 
+\emph{n-tuples} since each p
 }
 
 
