@@ -6,6 +6,8 @@
 \usepackage{microtype}
 \usepackage{float}
 \usepackage{makecell}
+\usepackage{hyperref}
+\usepackage{hypcap}
 \newcommand{\true}{{\mathfrak{t}}}
 \newcommand{\false}{{\mathfrak{f}}}
 \geometry{legalpaper, portrait, margin=1in}
@@ -550,17 +552,22 @@ which contains quantifiers.\\
     \exists z \in \mathbb{Z}: z^2 = z. \text{ There exist an integer $z$, such that $z^2 = z$.}
     $$
     }
-    \item Quantifiers are tied to variables within its scope. In $\exists x, Px \wedge (\forall y, \lnot Py \rightarrow Px)$, 
-    $\exists x$ applies to the whole formula, but $\forall y$ only applies to the inner bracket.
+    \item Quantifiers are tied to variables within its scope. In $P(z) := \exists x (Px\vee Pz) \wedge (\forall y\  \lnot Py \rightarrow Px)$, 
+    $\exists x$ applies to the whole formula, but $\forall y$ only applies to the inner bracket. Here $z$ is a \emph{free} variable, 
+    since it is not bound by a quantifier.
+    \item Order matters for quantifiers, for example:$$
+        \exists x \forall y \in \mathbb{R}, x < y \text{ is false, since there is no smallest element in $\mathbb{R}$}
+    $$
+    $$
+        \forall y \exists x \in \mathbb{R}, x < y \text{ however holds, since for all $y$, there is a $x$ that is smaller.}
+    $$
     \item To prove or find counter example: \begin{itemize}
         \item To prove $\forall x, Px$, it is necessary to show $Px$ holds for any arbitrary $x$.
         \item To disprove/find counter example for $\forall x, Px$, it is sufficient to find a single $x$ such that $Px$ does not hold.  
         \item To prove $\exists x, Px$, it is sufficient to show there is at least 1 $x$ such that $Px$ holds.
-        \item To disprove $\exists x, Px$ it is necessary to show $Px$ is not satisfied for all $x$.
+        \item To disprove $\exists x, Px$ it is necessary to show $Px$ is not satisfied for all $x$.    
     \end{itemize}
 \end{itemize}
-
-
 }
 
 
