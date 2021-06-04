@@ -199,10 +199,75 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
             [$\false \lnot A$ [$\false B$]]
             [$\false \lnot B$ [$\false A$]]
             ]
+        \end{forest}\\
+
+
+        \hline
+        $\true \forall$ :
+        & \begin{forest}
+            [ $\true \forall x \ Ax $
+                [$\true A\alpha$]
+            ]
         \end{forest}
+        & $\false \forall$: 
+        & \begin{forest}
+            [$\false \forall x \ Ax$
+                [$\false A \eta$]
+            ]
+        \end{forest}\\
+        \hline
+        $\true \exists$ :
+        & \begin{forest}
+            [ $\true \exists x \ Ax $
+                [$\true A\eta$]
+            ]
+        \end{forest}
+        & $\false \exists$: 
+        & \begin{forest}
+            [$\false \exists x \ Ax$
+                [$\false A \alpha$]
+            ]
+        \end{forest}\\
+        \hline
+        $\true =$: &
+        \begin{forest}
+            [{$\true a = b$ \\ $\true A(a)$}
+            [
+                $\true A(b)$
+            ]
+            ]
+        \end{forest}
+        & $\false =$: 
+        & \begin{forest}
+            [{$\true a = b$ \\ $\false A(a)$}
+            [$\false A(b)$]
+            ]
+        \end{forest}
+
     \end{tabular}
 \end{table}
-{\large Note: 
+
+
+\noindent{\large Quantifier \& Identity Note:
+
+\begin{itemize}
+    \item $\alpha$ means an arbitrary choice of variable name could used in place of $\alpha$, might be a good idea to just use $a$.
+    \item $\eta$ means a new variable name that has previously unused in the current branch must be used to replace $\eta$.
+    \item Use the following to deal with $\lnot$: $$ \lnot \exists x \ Ax \iff \forall x \ \lnot Ax$$ $$ \lnot \forall x \ Ax \iff \exists x \ \lnot Ax $$ $$(\false \lnot (a = b)) \iff (\true a = b)$$
+    \item Identiy closure condidtions: $\false a = a, \ \true \lnot(a = a)$.
+    \item Remember that $=$ is symmetric, so that $a = b \iff b = a$.
+    \item Branches involving quantifiers are undecidable, so some strategies and luck is involved in closing those branches.
+    \item {Quantifier order matters!: \begin{itemize}
+        \item Swapping from $\exists x \forall y$ to $ \forall y \exists x$ is okay, the reserve is not, in general.
+    \end{itemize}
+        }
+\end{itemize}
+}
+
+
+
+
+\noindent{\large Note: 
 \begin{itemize}
     \item Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B \wedge A)$.
     \item To prove a consequence, set the premise to true, conclusion to false. This proves that there is
@@ -258,6 +323,7 @@ Since all branches are closed, the negation of the conclusion is never satisfied
 thus the relation always holds for all values D and E might take on.
 }
 
+\newpage
 
 \section{Notable Definitions from Part 1}
 \subsection{Consequences}
@@ -597,6 +663,45 @@ for the predicate of `$a < b$. Predicate with multiple variable could be written
 $n$ is the number of variable. For a predicate of $n$ variable, then the extension/anti-extension should contain 
 \emph{n-tuples} since the predicate needs n variables.
 }
+
+\newpage
+\subsection{Identity}
+
+\noindent{
+    \large
+
+\textbf{Motivation}: To determine if 2 objects are `Equal', that they behave identically, or have 
+the same properties.\\
+
+\textbf{Extention and AntiExtention}: 
+$$
++(=) \text{ is } \{\langle o, o \rangle : o \in D\} \text{ (the identity relation, or $Id_D$)}
+$$
+$$
+-(=) \text{ is } \{\langle o_1, o_2 \rangle : o_1, o_2 \in D, \space o_1 \not = o_2\}
+$$
+
+Such that everything is identical to itself, and nothing else. Recall that a equivalence relation
+is reflexive($x = x$), symmetric($x=y \iff y = x$), and transitive($x=y \wedge y = z \implies x = z$).
+\\
+
+\textbf{First Order Leibniz Law}: if $a=b$, then $a$ is interchangable with $b$:
+$$
+Pa, a = b \models_1 Pb
+$$
+
+\textbf{Properties of $\not =$}:
+ 
+\begin{itemize}
+    \item $(a\not= b \iff \lnot (a = b))$
+    \item $\forall x, x \not = x$ is always an contradiction, $\not = $ is not reflexive
+    \item $\forall x, y \quad x \not = y \iff y \not = x$, $\not = $ is symmetric
+    \item In general $\exists x, y, z : x \not = y \wedge y \not = z \not \implies x \not = z$, $\not =$ is not transitive
+    \item $Pa, a\not = b \not \models_1 Pb$
+\end{itemize}
+For tableaux formulas involving quantifier and equality, see the reference section.
+}
+
 
 
 \end{document}
