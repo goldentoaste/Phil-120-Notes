@@ -702,6 +702,53 @@ $$
 For tableaux formulas involving quantifier and equality, see the reference section.
 }
 
+\newpage
+\section{Other Logcial systems}
+
+\large
+This section examines logical systems with 3(Neither) or 4(Neither and Both) logical values. For example, 
+``it is raining right now.'' is either true or false, but ``it will rain tormorrow'' is indeterminant, since
+it's not possible to know for sure if it will rain tormorrow.
+\\
+
+\large
+Options for alternative logic systems:\\
+
+\begin{tabular}{c | c| l}
+    \hline
+    Consistant & Complete & Logical Theory\\
+    \hline
+    Yes & Yes & CL Classical Logics\\
+    
+    Yes & No & K3 Strong Kleene\\
+    No & Yes & LP Logics of Paradox \\
+    No & No & FDE First-Degree Entailment\\
+    \hline
+    
+\end{tabular}\\  \\ \\
+
+
+\noindent\textbf{Paracomplete \& Paraconsistent}: 
+\begin{itemize}
+    \large
+    \item A logical theroy is \emph{paracomplete} 
+    if it is not complete, that is for some statement A, $\exists c\ :\  c\not \models_1 A \wedge c \not \models_0 A$,
+    so some statement in some cases cases can be both not true, and not false at the same time.
+    \item A logical theory is \emph{paraconsistent} if it is not consistent, that is, for some statement A, 
+    $\exists c \ :\ c \models_1 A \wedge c \models_0 A$, so that under some cases, some statements can be 
+    both true and false at once.
+    \item Note: K3 is \emph{Paracomplete}, LP is \emph{Paraconsistent}, FDE is neither(so neither and both true and false cases exists).
+    
+\end{itemize}\\
+
+\noindent \textbf{Logical Consequences}: 
+Let $\vdash_{Cl}\quad \vdash_{K3} \quad \vdash_{LP}\quad \vdash_{FDE}$ denote consequence relation in each logical system.
+\begin{itemize}
+    \item $w\vdash_{K3}A \implies w\vdash_{CL} A$, since 
+\end{itemize}
+
+
+
 
 
 \end{document}
