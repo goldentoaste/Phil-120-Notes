@@ -81,12 +81,16 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
     \centering
     \large
     \begin{tabular}{c l}
-        $A \vee \lnot A = T$ & Excluded Middle, either A or not A must be true.\\
+        $A \vee \lnot A = T$ & \makecell[l]{
+            Excluded Middle, either A or not A must be true.\\
+            (Not true in K3, since it could be the case that both \\ $A$ and $\lnot A$ are not true)
+        }\\
         &\\
         \hline
         &\\
         $\lnot (A \wedge \lnot A)$ & \makecell[l]{
             Non-contradiction.\\ It is true that not both A and not A hold at the \\same time. 
+            \\(Not true in K3)
         }\\
         &\\
         \hline
@@ -100,6 +104,12 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
         If the conclusion is false, then the premise must be false also.}\\
         &\\
         \hline
+        &\\
+        $A \rightarrow A\vee B$ & \makecell[l]{Disjunctive Introduction\\
+        If A is true, then A or B is also true, regardless if what B is.}\\
+        &\\
+        \hline
+
         &\\
         $A \vee B, \lnot A \implies B$ & \makecell[l]{
             Disjunctive syllogism.\\
@@ -133,6 +143,9 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
 
     \end{tabular}
 \end{table} 
+
+\large Note: In LP, all of modus ponens, modus tollens, contrapositive, and explosion are all not valid, because 
+disjunctive syllogism does not hold in LP. 
 
 \subsection{Tableaux Identities}
 \begin{table}[H]
@@ -711,6 +724,7 @@ This section examines logical systems with 3(Neither) or 4(Neither and Both) log
 it's not possible to know for sure if it will rain tormorrow.
 \\
 
+\subsection{CL, K3, LP, FDE}
 \large
 Options for alternative logic systems:\\
 
@@ -737,18 +751,54 @@ Options for alternative logic systems:\\
     \item A logical theory is \emph{paraconsistent} if it is not consistent, that is, for some statement A, 
     $\exists c \ :\ c \models_1 A \wedge c \models_0 A$, so that under some cases, some statements can be 
     both true and false at once.
-    \item Note: K3 is \emph{Paracomplete}, LP is \emph{Paraconsistent}, FDE is neither(so neither and both true and false cases exists).
+    \item Note: K3 is \emph{Paracomplete}, LP is \emph{Paraconsistent}, FDE is both(so neither and both true and false cases exists).
     
-\end{itemize}\\
+\end{itemize}
+\bigskip
 
 \noindent \textbf{Logical Consequences}: 
-Let $\vdash_{Cl}\quad \vdash_{K3} \quad \vdash_{LP}\quad \vdash_{FDE}$ denote consequence relation in each logical system.
+Let $\vdash_{Cl}\quad \vdash_{K3} \quad \vdash_{LP}\quad \vdash_{FDE}$ denote consequence relation in each logical system. 
+Where $w \vdash_T A$ means that under the logical theory $T$, there no case where $w$ is satisfied, but $A$ isn't; or in other words,
+no counter examples exists.
 \begin{itemize}
-    \item $w\vdash_{K3}A \implies w\vdash_{CL} A$, since 
+    \item {$w\vdash_{K3}A \implies w\vdash_{CL} A$. This holds because logical consequence really means
+     that no counter example exist, and also that classical cases are subset of Incomplete cases. So no 
+     incomplete counter examples exists $\implies$ no classical counter examples exists. \\
+     (This shows that a language can be incomplete(Like most natural languages) yet still have cases that is entirely precies and classical.) } 
+     \item {$w\vdash_{LP}A \implies w\vdash_{CL} A$. This holds similar to reason above. (A language 
+     can be inconsistent/ have paradox yet still have a subset of cases that behaves classically.
+     )}
+     \item Similarly, $w\vdash_{FDE}A \implies w\vdash_{CL} A, \ w\vdash_{LP}A, \ w\vdash_{K3}A$
+
 \end{itemize}
 
+\bigskip
+\noindent \textbf{Semantic Values}: Each theory have a set of \emph{semantic values}, which are results of 
+interpreting a statement, in classical theory, a statement is either true or false, so $\mathcal{V}_{CL} = \{T, F\}$. The 
+semantic values for other thories are as follows:\\
 
+\begin{tabular}{c|l}
+    Theory & Semantic Value\\
+    \hline
+    CL & $\{T, F\}$\\
+    K3 & $\{T, F, N\}$\\
+    LP & $\{T, F, B\}$\\
+    FDE & $\{T, F, B, N\}$\\
 
+\end{tabular}\\\\
+Where $N$ is semantically nethier($c \not \models_1 A \text{ and } c \not \models_0 A$), $B$ is both true and false($c  \models_1 A \text{ and } c  \models_0 A$).\\
+Logical conjunctions holds the same way as in classical theory, for exmaple: \\$c \models_1 A\vee B \text{ iff } c\models_1 A \text{ or } c\models_1 B $
+
+\newpage
+\subsection{Logic Identities in K3 and LP}
+When moving from classical logics to a paraconsistent or paracomplete theory, some logical identities are sacrificed.\\
+
+\noindent \textbf{K3}: In K3, Excluded Middle and Non-contradiction are both lost compared to classical logics. See section 1.2.\\
+
+\noindent \textbf{LP}: In LP, its notable that all classical true statements are also truth in LP. Also,
+\emph{modus ponens, modus tollens}, Disjunctive Syllogism, and Explosion are all lost when moving from classical to LP.
+For a counter example, if $A$ is both true and false, and $B$ is false only, then $A\vee B$ is not false, 
+then $\lnot A$ is not false, but $B$ is false.\\
 
 
 \end{document}
