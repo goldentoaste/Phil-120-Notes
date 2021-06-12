@@ -1,0 +1,35 @@
+
+\documentclass{article}
+
+\usepackage{hhline}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{hhline}
+\newcommand{\RowColor}{\rowcolor{red!50} \cellcolor{white}}
+
+\begin{document}
+\begin{tabular}{l || l l l l l | l}
+                  & 1 & 2 & 3 & 4 & 5 & \cellcolor{yellow}6 \\\hhline{=#=====|=}
+\RowColor       1 & 1 & 1 & 1 & 1 & 1 & \cellcolor{white}0  \\
+\RowColor       2 & 1 & 1 & 1 & 1 & 1 & \cellcolor{white}0  \\
+\RowColor       3 & 1 & 1 & 1 & 1 & 1 & \cellcolor{white}0  \\
+\RowColor       4 & 1 & 1 & 1 & 1 & 1 & \cellcolor{white}0  \\
+\RowColor       5 & 1 & 1 & 1 & 1 & 1 & \cellcolor{white}0  \\\hline
+\cellcolor{cyan}6 & 0 & 0 & 0 & 0 & 0 & \cellcolor{green}1
+\end{tabular}
+
+
+
+    \begin{tabular}{c l}
+
+        
+        \setlength\arrayrulewidth{1pt}
+        \begin{tabular}{|l |c| l| c| c|}
+            \RowColor \cellcolor{green}T & F & \cellcolor{green} U\\
+            \hline
+        \end{tabular}
+    \end{tabular}
+
+\end{document}

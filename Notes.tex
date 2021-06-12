@@ -8,8 +8,9 @@
 \usepackage{makecell}
 \usepackage{hyperref}
 \usepackage{hypcap}
-\newcommand{\true}{{\mathfrak{t}}}
-\newcommand{\false}{{\mathfrak{f}}}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{hhline}
 \geometry{legalpaper, portrait, margin=1in}
 \title{Phil 120, Review Notes}
 \author{Stuff}
@@ -22,7 +23,11 @@
 
 \newpage    
 
-
+\newcommand{\true}{{\mathfrak{t}}}
+\newcommand{\false}{{\mathfrak{f}}}
+\newcommand{\greencell}{\cellcolor{green!45}T}
+\newcommand{\redcell}{\cellcolor{red!45}F}
+\newcommand{\orangecell}{\cellcolor{orange!45}B}
 \section{References}
 
 \subsection{Basic Logic Operators}
@@ -69,12 +74,155 @@ The followings are for A * B, where '*' is an operator, A is top row, B is left 
             F & F & T
         \end{tabular} & \makecell[l]{IFF, A if and only B. A is logically equivalent to B, two way implication.\\
         A $\leftrightarrow$ B is true exactly when the truth value of A is the same as B.\\
-        Note: $A \leftrightarrow B = (A \rightarrow B) \wedge (B \rightarrow A) = (A \wedge B) \vee (\lnot A \wedge \lnot B)$
+        Note: $A \leftrightarrow B = (A \rightarrow B) \wedge (B \rightarrow A) = (A \wedge B) \vee (\lnot A \wedge \lnot B)$\\\\
         }
     \end{tabular}
 \end{table}
 
+\noindent \large \textbf{Truth tables for 3 Value Logics Theories}:
 
+\begin{table}[H]
+    \centering
+    \large
+    \begin{tabular}{c l}
+        \renewcommand{\arraystretch}{1.3}
+        
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c |c| c| c| c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{$A \vee B$}}  & \multicolumn{3}{c|}{B}\\
+            \hhline{|~~|---}
+            \multicolumn{2}{|c|}{} & \greencell & \redcell  & U\\
+            \hline
+            \multirow{3}{*}{A} & \greencell & \greencell & \greencell & \greencell\\
+            \hhline{|~|----}
+            & \redcell & \greencell & \redcell & U\\
+            \hhline{|~|----}
+            & U & \greencell & U & U\\
+            \hline
+        \end{tabular} & \quad \makecell[l]{OR. For both LP and K3, the 2 logic thoeries shares the same truth\\
+        table, where U can either be both or neither.}\\
+        &\\
+        \hline
+        &\\
+        \renewcommand{\arraystretch}{1.3}
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c |c| c| c| c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{$A \wedge B$}}  & \multicolumn{3}{c|}{B}\\
+            \hhline{|~~|---}
+            \multicolumn{2}{|c|}{} & \greencell & \redcell  & U\\
+            \hline
+            \multirow{3}{*}{A} & \greencell & \greencell & \redcell & U\\
+            \hhline{|~|----}
+            & \redcell & \redcell & \redcell & \redcell\\
+            \hhline{|~|----}
+            & U & U & \redcell & U\\
+            \hline
+        \end{tabular} & \quad \makecell[l]{AND For both LP and K3.}\\
+        &\\
+        \hline
+        &\\
+        \renewcommand{\arraystretch}{1.3}
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c |c| c| c| c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{$A \rightarrow B$}}  & \multicolumn{3}{c|}{B}\\
+            \hhline{|~~|---}
+            \multicolumn{2}{|c|}{} & \greencell & \redcell  & U\\
+            \hline
+            \multirow{3}{*}{A} & \greencell & \greencell & \redcell & U\\
+            \hhline{|~|----}
+            & \redcell & \greencell & \greencell & \greencell\\
+            \hhline{|~|----}
+            & U & \greencell & U & U\\
+            \hline
+        \end{tabular} & \quad \makecell[l]{A implies B For both LP and K3. ($\lnot A \vee B$)}\\
+        &\\
+        \hline
+        &\\
+        \renewcommand{\arraystretch}{1.3}
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c|c|}
+            \hline
+            $A$ & $\lnot A$\\
+            \hhline{--}
+            \greencell & \redcell\\
+            \hhline{--}
+            \redcell & \greencell\\
+            \hhline{--}
+            U  & U\\
+            \hline
+        \end{tabular} & Not table for LP and K3.
+    \end{tabular}
+\end{table}
+
+\newpage
+\noindent \large \textbf{Truth tables for 4 Value Logics Theories}:
+\begin{table}[H]
+    \centering
+    \large
+    \begin{tabular}{c l}
+        \renewcommand{\arraystretch}{1.3}
+        
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c |c| c| c| c|c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{$A \vee B$}}  & \multicolumn{4}{c|}{B}\\
+            \hhline{|~~|----}
+            \multicolumn{2}{|c|}{} & \greencell & \redcell  & \orangecell & N\\
+            \hline
+            \multirow{4}{*}{A} & \greencell & \greencell & \greencell & \greencell & \greencell\\
+            \hhline{|~|-----}
+            & \redcell & \greencell & \redcell & \orangecell & N\\
+            \hhline{|~|-----}
+            & \orangecell & \greencell & \orangecell & \orangecell & \greencell\\
+            \hhline{|~|-----}
+            & N & \greencell & N & \greencell & N\\
+            \hline
+        \end{tabular} & \quad \makecell[l]{OR Table for FDE, very similar to 3 valued table.}\\
+        &\\
+        \hline
+        &\\
+        \renewcommand{\arraystretch}{1.3}
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c |c| c| c| c|c|}
+            \hline
+            \multicolumn{2}{|c|}{\multirow{2}{*}{$A \vee B$}}  & \multicolumn{4}{c|}{B}\\
+            \hhline{|~~|----}
+            \multicolumn{2}{|c|}{} & \greencell & \redcell  & \orangecell & N\\
+            \hline
+            \multirow{4}{*}{A} & \greencell & \greencell & \redcell & \orangecell & N\\
+            \hhline{|~|-----}   
+            & \redcell & \redcell & \redcell & \redcell & \redcell\\
+            \hhline{|~|-----}
+            & \orangecell & \orangecell & \redcell & \orangecell & \redcell\\
+            \hhline{|~|-----}
+            & N & N & \redcell & \redcell & N\\
+            \hline
+        \end{tabular} & \quad \makecell[l]{AND Table for FDE.}\\
+        &\\
+        
+        \hline
+        &\\
+        \renewcommand{\arraystretch}{1.3}
+        \setlength\arrayrulewidth{0.8pt}
+        \begin{tabular}{|c|c|}
+            \hline
+            $A$ & $\lnot A$\\
+            \hhline{--}
+            \greencell & \redcell\\
+            \hhline{--}
+            \redcell & \greencell\\
+            \hhline{--}
+            \orangecell  & \orangecell\\
+            \hhline{--}
+            N & N\\
+            \hline
+        \end{tabular} & Not table for FDE.
+    \end{tabular}
+\end{table}
+\newpage
 \subsection{Some Logic Identities}
 
 \begin{table}[H]
@@ -215,7 +363,31 @@ disjunctive syllogism does not hold in LP.
         \end{forest}\\
 
 
-        \hline
+       
+        
+
+    \end{tabular}
+\end{table}
+
+\noindent{\large Note: 
+\begin{itemize}
+    \item Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B \wedge A)$.
+    \item To prove a consequence, set the premise to true, conclusion to false. This proves that there is
+     no possible counter example, since the negation is never satisfied. 
+     \begin{itemize}
+         \item If there are atomic branches left open, then those are valid counter examples.
+     \end{itemize}
+    \item A branch is closed any of following pairs occurs in a branch:
+    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$, use a '$\times$' to 
+    indicate a closed branch.
+\end{itemize}
+\bigskip
+\noindent \Large \textbf{Quantifier Tableaux:}
+\begin{table}[H]
+    \Large
+    \centering
+
+    \begin{tabular}{c c | c c}
         $\true \forall$ :
         & \begin{forest}
             [ $\true \forall x \ Ax $
@@ -256,10 +428,9 @@ disjunctive syllogism does not hold in LP.
             [$\false A(b)$]
             ]
         \end{forest}
-
     \end{tabular}
+    
 \end{table}
-
 
 \noindent{\large Quantifier \& Identity Note:
 
@@ -280,18 +451,7 @@ disjunctive syllogism does not hold in LP.
 
 
 
-\noindent{\large Note: 
-\begin{itemize}
-    \item Use De Morgan's Law to deal with negations($\lnot$), also, $\lnot (A \rightarrow B) = (\lnot B \wedge A)$.
-    \item To prove a consequence, set the premise to true, conclusion to false. This proves that there is
-     no possible counter example, since the negation is never satisfied. 
-     \begin{itemize}
-         \item If there are atomic branches left open, then those are valid counter examples.
-     \end{itemize}
-    \item A branch is closed any of following pairs occurs in a branch:
-    $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$, use a '$\times$' to 
-    indicate a closed branch.
-\end{itemize}
+
 Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$\\
 
 
@@ -769,6 +929,11 @@ no counter examples exists.
      can be inconsistent/ have paradox yet still have a subset of cases that behaves classically.
      )}
      \item Similarly, $w\vdash_{FDE}A \implies w\vdash_{CL} A, \ w\vdash_{LP}A, \ w\vdash_{K3}A$
+     \item {Note: A counter example for $A \vdash_L B$ is when $\models_1 A$, but $\not \models_1 B$. Which means 
+     that A is True or Both, and B is False or Neither.
+     }
+     
+
 
 \end{itemize}
 
@@ -790,7 +955,7 @@ Where $N$ is semantically nethier($c \not \models_1 A \text{ and } c \not \model
 Logical conjunctions holds the same way as in classical theory, for exmaple: \\$c \models_1 A\vee B \text{ iff } c\models_1 A \text{ or } c\models_1 B $
 
 \newpage
-\subsection{Logic Identities in K3 and LP}
+\subsection{Logic in K3 and LP}
 When moving from classical logics to a paraconsistent or paracomplete theory, some logical identities are sacrificed.\\
 
 \noindent \textbf{K3}: In K3, Excluded Middle and Non-contradiction are both lost compared to classical logics. See section 1.2.\\
@@ -800,5 +965,30 @@ When moving from classical logics to a paraconsistent or paracomplete theory, so
 For a counter example, if $A$ is both true and false, and $B$ is false only, then $A\vee B$ is not false, 
 then $\lnot A$ is not false, but $B$ is false.\\
 
+\noindent \textbf{FDE}: When moving from classical to FDE, all that K3 or LP loses, FDE also loses. For 
+truth tables, see section 1.\\
 
+
+\noindent \textbf{Truth Value Redefined}:
+\begin{itemize}
+    \item {In classical logics, $\models_1 A \implies \not models_0 A$, this is not true in general in other logics systems. There are now 4 possible senarios:
+        \begin{itemize}
+            \large
+            \item $\models_1 A \wedge \not \models_0 A$ (True)
+            \item $\not\models_1 A \wedge  \models_0 A$ (False)
+            \item $\not \models_1 A \wedge \not \models_0 A$ (Neither)
+            \item $\models_1 A \wedge \models_0 A$ (Both)
+        \end{itemize}
+    }
+    \item {A more general way to define conjunctions, Disjunctions, and negations is as follows:
+        \begin{itemize}
+            \item Conjunction: $\models_1 A\wedge B$ iff $\models_1 A$ and $\models_1 B$
+            \item Conjunction: $\models_0 A\wedge B$ iff $\models_0 A$ or $\models_0 B$\\
+            \item Disjunction: $\models_1 A\vee B$ iff $\models_1 A$ or $\models_1 B$
+            \item Disjunction: $\models_0 A\vee B$ iff $\models_0 A$ and $\models_0 B$\\
+            \item Negation: $\models_1\lnot A iff \models_0A$
+            \item Negation: $\models_0\lnot A iff \models_1A$
+        \end{itemize}
+    }
+\end{itemize}
 \end{document}
