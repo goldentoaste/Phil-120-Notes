@@ -381,7 +381,7 @@ disjunctive syllogism does not hold in LP.
     $\{(\false A, \true A), (\false A, \false \lnot A), (\true A, \true \lnot A)\}$, use a '$\times$' to 
     indicate a closed branch.
 \end{itemize}
-\
+\bigskip
 \noindent \Large \textbf{Quantifier Tableaux:}
 \begin{table}[H]
     \Large
@@ -448,10 +448,27 @@ disjunctive syllogism does not hold in LP.
 \end{itemize}
 }
 
+\noindent \large \textbf{Other Theory's Closing Conditions}:\\
+Only some of the following rules apply:
+\begin{enumerate}
+    \item $\true A$ and $\false A$
+    \item $\true A$ and $\true \lnot A$ (Not a condition if inconsistent)
+    \item $\false A$ and $\false \lnot A$(Not a condition if incomplete)\\
+\end{enumerate}
 
-
-
-
+\begin{tabular}{c | l}
+    \hline
+    Logic Theory & Applicable Rules\\
+    \hline
+    CL & Rule 1, 2, 3\\
+    K3 & Rule 1, 2\\
+    LP & Rule 1, 3\\
+    FDE & Rule 1 only\\
+    \hline
+\end{tabular}\\
+Note: Aside from closing conditions, everything else remains the same other 
+logic systems(the way each operator splits, identity rules, and quantifier rules etc).\\\\\\
+\bigskip
 Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$\\
 
 
@@ -958,12 +975,14 @@ Logical conjunctions holds the same way as in classical theory, for exmaple: \\$
 \subsection{Logic in K3 and LP}
 When moving from classical logics to a paraconsistent or paracomplete theory, some logical identities are sacrificed.\\
 
-\noindent \textbf{K3}: In K3, Excluded Middle and Non-contradiction are both lost compared to classical logics. See section 1.2.\\
+\noindent \textbf{K3}: In K3, Excluded Middle and Non-contradiction are both lost compared to classical logics. 
+There are no true statement in K3, that is, for all statement, there is always a 
+interpretation that makes the statement Neither. See section 1.2.\\
 
 \noindent \textbf{LP}: In LP, its notable that all classical true statements are also truth in LP. Also,
 \emph{modus ponens, modus tollens}, Disjunctive Syllogism, and Explosion are all lost when moving from classical to LP.
 For a counter example, if $A$ is both true and false, and $B$ is false only, then $A\vee B$ is not false, 
-then $\lnot A$ is not false, but $B$ is false.\\
+then $\lnot A$ is not false, but $B$ is false. Also, truth in LP iff truth in CL.\\
 
 \noindent \textbf{FDE}: When moving from classical to FDE, all that K3 or LP loses, FDE also loses. For 
 truth tables, see section 1.\\
@@ -971,13 +990,14 @@ truth tables, see section 1.\\
 
 \noindent \textbf{Truth Value Redefined}:
 \begin{itemize}
-    \item {In classical logics, $\models_1 A \implies \not models_0 A$, this is not true in general in other logics systems. There are now 4 possible senarios:
+    \item {In classical logics, $\models_1 A \implies \not \models_0 A$, this is not true in general in other logics systems. There are now 4 possible senarios:
         \begin{itemize}
             \large
             \item $\models_1 A \wedge \not \models_0 A$ (True)
             \item $\not\models_1 A \wedge  \models_0 A$ (False)
             \item $\not \models_1 A \wedge \not \models_0 A$ (Neither)
             \item $\models_1 A \wedge \models_0 A$ (Both)
+            \item Note: Satisfied means True or Both, Not satisfied means False or Neither.
         \end{itemize}
     }
     \item {A more general way to define conjunctions, Disjunctions, and negations is as follows:
@@ -991,4 +1011,44 @@ truth tables, see section 1.\\
         \end{itemize}
     }
 \end{itemize}
+
+\subsection{Non Classical Quantifiers}
+\large
+\noindent \textbf{Exclusive and Exhaustion}:
+A case is \emph{exhausive} if for each variable in the domain of the case, the variable is either
+in the extension or the anti-extension of the predicate. 
+A case if \emph{Exclusive} if each variable can not be in both extension and anti-extension.\\
+
+
+\begin{tabular}{c | c| l}
+    \hline
+    Exclusion & Exhaustion & Logical Theory\\
+    \hline
+    Yes & Yes & CL Classical Logics\\
+    
+    Yes & No & K3 Strong Kleene\\
+    No & Yes & LP Logics of Paradox \\
+    No & No & FDE First-Degree Entailment\\
+    \hline
+    
+\end{tabular}\\  \\ \\
+
+\noindent For any predicate $P^n$ with n variables, \\
+\emph{Exhaustion} $\implies +(P) \cup -(P) = D^n$\\
+\emph{Exclusion} $\implies +(P) \cap  -(P) = \emptyset$\\
+With these rules in place, evaluation of predicates with or without quantifiers is similar to that of classical theory. 
+
+
+\subsection{Non Classical Tableaux}
+
+\textbf{Closing Condition}: Since in alternative logic theories, Both 
+or Neither might be acceptable values, some classical closing conditions are no longer applicable in other thoeries. See the Reference section at the
+beginning for more details.
+
+\subsection{Non Classical Translations}
+Pretty much translates the same way, except its important that a classical
+interpretation does not apply in other theory, use a tableaux to determine if the statement 
+is valid.
+
+
 \end{document}
