@@ -28,6 +28,7 @@
 \newcommand{\greencell}{\cellcolor{green!45}T}
 \newcommand{\redcell}{\cellcolor{red!45}F}
 \newcommand{\orangecell}{\cellcolor{orange!45}B}
+\newcommand{\E}{\mathbb{E}}
 \section{References}
 
 \subsection{Basic Logic Operators}
@@ -468,10 +469,90 @@ Only some of the following rules apply:
 \end{tabular}\\
 Note: Aside from closing conditions, everything else remains the same other 
 logic systems(the way each operator splits, identity rules, and quantifier rules etc).\\\\\\
-\bigskip
+
+\textbf{Existence Tablaeux}:
+\begin{table}[H]
+    \Large
+    \centering
+
+    \begin{tabular}{c c | c c}
+       
+        
+        $\true\forall$ & \begin{forest}
+            [$\true \forall \ x A(x)$
+                [$\false \E \alpha $]
+                [$\true A(\alpha)$]
+            ]
+        \end{forest}
+        & $\false \forall$&
+        \begin{forest}
+            [$\false \forall \ x A(x)$
+                [$\true \E \eta$
+                    [$\false A(\eta)$]
+                ]
+            ]
+        \end{forest}\\
+        \hline
+        $\true \exists$&
+        \begin{forest}
+            [$\false \forall \ x A(x)$
+                [$\true \E \eta$
+                    [$\true A(\eta)$]
+                ]
+            ]
+        \end{forest} & $\false \exists$ & \begin{forest}
+            [$\false \exists \ x A(x)$
+                [$\false \E \alpha $]
+                [$\false A(\alpha)$]
+            ]
+        \end{forest}
+    \end{tabular}
+    
+\end{table}
+Where $\alpha$ means you can chose any new variable, $\eta$ means a previously unchosen variable name. $\E$ is a 
+existence function, $\true \E b$ semantically means that $b$ \emph{really} exists. Note, $\E$ acts like a predicate,
+and closure conditions for each logic system is as usual.\\\\\\\\
+
+\textbf{Modal tabeaux}: 
+\begin{table}[H]
+    \Large
+    \centering
+
+    \begin{tabular}{c c | c c}
+
+        $\true @w \square$ & \begin{forest}
+            [$\true @w \square A$
+                [$\true @w_\alpha A$]
+            ]
+        \end{forest}
+        & $\false @w \square$&
+        \begin{forest}
+            [$\false @w \square A$
+                [$\false @w_\eta A$
+                ]
+            ]
+        \end{forest}\\
+        \hline
+        $\true @w \Diamond$ & \begin{forest}
+            [$\true @w \Diamond A$
+                [$\true @w_\eta A$]
+            ]
+        \end{forest}
+        & $\false @w \Diamond$&
+        \begin{forest}
+            [$\false @w \Diamond     A$
+                [$\false @w_\alpha A$
+                ]
+            ]
+        \end{forest}\\
+    \end{tabular}
+    
+\end{table}
+
+Where $@w$ indicates which world the node is refering to, $@w_\alpha$ means any world may be chosen, $\eta$ means
+a new world must be chosen. \emph{True identities} are shared between worlds($\true @w a = b$). Closure conditions and connectives are the usual,
+quantifier rules follows from free logic.\\\\\\\\
 Example: Use tableaux to prove $ (E \rightarrow D) \vdash_1 ((D \wedge E) \leftrightarrow E)$\\
-
-
 \begin{center}
     \begin{forest}
         [
@@ -1051,4 +1132,69 @@ interpretation does not apply in other theory, use a tableaux to determine if th
 is valid.
 
 
+\newpage
+\section{Free Logics} 
+\large
+\textbf{Motivations}: Previous, many things in statements were treated as named constants(if it exists, it must behave a certain way), but 
+in reality, they might not exist in the world. For example, `The King of France', `25th of U.S', 
+`Fastfood chain McDonalds' etc, these things in reality may or may not exist, and statements made on 
+non existent objects might not behave as expect. Free logics gives us a way to explain statements with non-existent objects.\\\\
+
+\noindent \textbf{Subset E}: The `existence' of an object in the world is defined by $E \subset D$, so
+now an interpretation is $\langle D, E, \delta \rangle$. $D$ is the set with all objects, 
+but $E$ is the subset of object that \emph{really exists}, $E$ may be empty, unlike $D$.\\\\
+\noindent The main difference this makes is that \emph{quanitfied} variables should only be assigned to 
+objects in $E$, like so: 
+$$
+w\models_1^v \exists x \ Px \iff \exists v' \mathtt{\sim}_x v, \ v'(x) \in E \text{ and } v'(x) \in +(P)
+$$
+So that only if there object in $E$ that satisfy $Px$ can satisfy $\exists x \ Px$, if there is no such object 
+exists, or perhaps $E$ is empty, then the quantifier is not satisftied. Other quantifiers follows similarlly.\\
+\\
+Note: The existence of a named constant can be defined like such : $E\alpha \iff (\exists x\ (x = \alpha))$, where $\alpha$ is the 
+named constant.\\
+
+\noindent \textbf{Notations}: `*' is used to denote the `free' version of each logic theory: (CL*, K3, LP*, FDE*), 
+where the main difference from the non-free version is $E \subset D$ and quantified variable must use $E$ to determine truth, as explained above.\\\\\\
+
+For tableaux see reference section at the beginning.
+
+\newpage
+\section{Possibility and Modal Logic}
+\large
+To express the notions of possibility and necessity. In our world, it is true that $2 + 2 = 4$, however 
+it is \emph{possible} that in some other world $2 + 2$ is something else. But if in every possible world, 
+we have $\pi = 3.14159...$, then it is \emph{necessary} that $\pi = 3.14159...$.\\
+
+\noindent \textbf{Worlds}: A \emph{world} is practically like a case/interpretation, where each variable and names
+have corresponding objects in this world, and each predicates have a set of objects that makes them true or false. 
+However, when dealing with Modal Logics, an interpretation will now include an \emph{universe} of worlds.\\
+
+\noindent \textbf{Truth in a World}: Again, each world is kind of like an interpretation, but not exactly:
+
+\begin{itemize}
+    \item Each interpretation has a universe of worlds.
+    \item Every world in the universe shares in the same domain of discourse, $D$.
+    \item Every world in the universe shares the same denotation function, $\delta$.
+    \item Each world has its own existence domain, $E_w$, so that some objects might exists in some worlds but not others.
+    \item Each has its own (anti)-extension for each predicate, $+_w(P)/-_w(P)$, so that the truth value of a predicate might vary depending on the worlds. 
+\end{itemize}
+Note that quantified variable should only be assigned objects in $E_w$.\\\\
+
+\noindent \textbf{Formal Definitions}: 
+\begin{itemize}
+    \item $\Diamond A$ is true in $w \iff A$ is true in at least 1 world. (So that for any given world, it is \emph{possible} that A is true).
+    \item $\Diamond A$ is false in $w \iff A$ is false at all worlds in the universe.(For any particular world, It is not possible that A is true)  \\
+    \item $\square A$ is true in $w \iff A$ is true in all possible worlds.
+    \item  $\square A$ is false in $w \iff A$ is false in at least 1 world.\\
+    \item $\lnot \square A \iff \Diamond \lnot A$
+    \item $\lnot \Diamond A \iff \square \lnot A$\\
+    \item {Interpretation will now be $\langle U, D, E, \delta \rangle$ where, $U$ is the non-empty set of worlds, $D$ is non-empty domain of discourse,
+        $E(w)$ maps $w$ to $E_w \in D$, the world's corresponding existence set, and $\delta$ is the denotation function as usual.
+    }
+    
+\end{itemize}
+
+
+For tableaux, see reference section at the beginning.
 \end{document}
